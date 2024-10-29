@@ -125,3 +125,4 @@
 /home/cecilia/csharp2/meuProjeto3/meuProjeto/bin/Debug/net8.0/runtimes/win-x64/native/krbcc64.dll
 /home/cecilia/csharp2/meuProjeto3/meuProjeto/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Windows.Extensions.dll
 /home/cecilia/csharp2/meuProjeto3/meuProjeto/obj/Debug/net8.0/meuProjeto.csproj.Up2Date
+/home/cecilia/csharp2/meuProjeto3/meuProjeto/obj/Debug/net8.0/meuProjeto.sourcelink.json

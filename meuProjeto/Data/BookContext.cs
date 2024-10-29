@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using meuProjeto.Models;
 
-
+// servir para banco de dados bbr
 namespace meuProjeto.Data {
     public class BookContext : DbContext //faz uma herança da classe DbContext
     // DbContext é uma classe do Entity Framework Core que permite a comunicação com o banco de dados.

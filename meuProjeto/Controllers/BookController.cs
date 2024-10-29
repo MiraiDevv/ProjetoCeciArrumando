@@ -2,48 +2,85 @@ using Microsoft.AspNetCore.Mvc;
 using meuProjeto.Data;
 using meuProjeto.Models;
 using System.Linq;
-
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace meuProjeto.Controllers{
+namespace meuProjeto.Controllers
+{
+    public class BooksController : Controller
+    {
+        private readonly BookContext _context;
 
-    [ApiController]
-    [Route("api/Book")] // rota do localhost:5001/api/Book
-    public class BookController : Controller {
-
-        private readonly BookContext _context; // cria um objeto do tipo BookContext
-
-        public BookController(BookContext context) // construtor
+        public BooksController(BookContext context)
         {
             _context = context;
         }
 
-        // public IActionResult Index() // método que retorna a view Index
-        // {
-        //     var livros = _context.Books.ToList(); // cria uma lista de livros,
-        //     // pega todos os livros criados no banco de dados e coloca na lista
-        //     return View(livros); // retorna a view Index
-            
-        // }
+        public IActionResult Index()
+        {
+            var books = _context.Books.ToList();
+            return View(books);
+        }
 
-        [HttpGet("GetBook")] // método que retorna todos os livros
+        [HttpGet("GetBooks")]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
-            return await _context.Books.ToListAsync(); // retorna todos os livros por meio
-            // do metodo toListAsync que é um método assíncrono que retorna uma lista de livros
+            return await _context.Books.ToListAsync();
+        }
+
+        [HttpGet("GetBook/{id}")]
+        public async Task<ActionResult<Book>> GetBook(int id)
+        {
+            var book = await _context.Books.FindAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            return book;
         }
 
         [HttpPost("CreateBook")]
-        public async Task<ActionResult<Book>> PostBook(Book book)
+        public async Task<ActionResult<Book>> PostBook([FromBody] Book book)
         {
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBooks), new { id = book.Id }, book);
-
+            return CreatedAtAction(nameof(GetBook), new { id = book.Id }, book);
         }
 
+        [HttpPut("UpdateBook/{id}")]
+        public async Task<IActionResult> PutBook(int id, Book book)
+        {
+            if (id != book.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(book).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        private bool BookExists(int id)
+        {
+            return _context.Books.Any(e => e.Id == id);
+        }
     }
 }
