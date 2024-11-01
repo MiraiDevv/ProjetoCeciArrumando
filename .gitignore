@@ -8,9 +8,6 @@ obj/
 # Arquivos de configuração específicos do ambiente
 appsettings.Development.json
 
-# Arquivo Docker Compose (opcional)
-docker-compose.yml
-
 # Diretórios gerados automaticamente
 wwwroot/lib/*
 
