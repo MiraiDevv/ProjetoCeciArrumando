@@ -1,0 +1,47 @@
+# Configuração do IDE
+.idea/
+
+# Diretórios de compilação
+bin/
+obj/
+
+# Arquivos de configuração específicos do ambiente
+appsettings.Development.json
+
+# Arquivo Docker Compose (opcional)
+docker-compose.yml
+
+# Diretórios gerados automaticamente
+wwwroot/lib/*
+
+# Não ignorar subdiretórios específicos dentro de wwwroot/lib/
+!wwwroot/lib/bootstrap/
+!wwwroot/lib/jquery/
+!wwwroot/lib/jquery-validation/
+!wwwroot/lib/jquery-validation-unobtrusive/
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Pacotes NuGet
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Build Results
+*.dll
+*.exe
+*.app
+*.appx
+*.appxbundle
+*.msi
+*.msp
+*.mst
+
+# Cache do Visual Studio
+.vs/

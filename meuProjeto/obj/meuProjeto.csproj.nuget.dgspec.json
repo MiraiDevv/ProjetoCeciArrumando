@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/cecilia/csharp2/meuProjeto3/meuProjeto/meuProjeto.csproj": {}
+    "/home/mirai/Dev/mvc-books/meuProjeto/meuProjeto.csproj": {}
   },
   "projects": {
-    "/home/cecilia/csharp2/meuProjeto3/meuProjeto/meuProjeto.csproj": {
+    "/home/mirai/Dev/mvc-books/meuProjeto/meuProjeto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/cecilia/csharp2/meuProjeto3/meuProjeto/meuProjeto.csproj",
+        "projectUniqueName": "/home/mirai/Dev/mvc-books/meuProjeto/meuProjeto.csproj",
         "projectName": "meuProjeto",
-        "projectPath": "/home/cecilia/csharp2/meuProjeto3/meuProjeto/meuProjeto.csproj",
-        "packagesPath": "/home/cecilia/.nuget/packages/",
-        "outputPath": "/home/cecilia/csharp2/meuProjeto3/meuProjeto/obj/",
+        "projectPath": "/home/mirai/Dev/mvc-books/meuProjeto/meuProjeto.csproj",
+        "packagesPath": "/home/mirai/.nuget/packages/",
+        "outputPath": "/home/mirai/Dev/mvc-books/meuProjeto/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/cecilia/.nuget/NuGet/NuGet.Config"
+          "/home/mirai/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/mirai/.dotnet/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

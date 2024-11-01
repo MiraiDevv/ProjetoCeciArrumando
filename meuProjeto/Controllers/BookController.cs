@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using meuProjeto.Data;
 using meuProjeto.Models;
 using System.Linq;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,70 +16,108 @@ namespace meuProjeto.Controllers
             _context = context;
         }
 
+        // GET: Books
         public IActionResult Index()
         {
             var books = _context.Books.ToList();
             return View(books);
         }
 
-        [HttpGet("GetBooks")]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+        // GET: Books/Details/5
+        public IActionResult Details(int id)
         {
-            return await _context.Books.ToListAsync();
-        }
-
-        [HttpGet("GetBook/{id}")]
-        public async Task<ActionResult<Book>> GetBook(int id)
-        {
-            var book = await _context.Books.FindAsync(id);
+            var book = _context.Books.FirstOrDefault(b => b.Id == id);
             if (book == null)
             {
                 return NotFound();
             }
-            return book;
+            return View(book);
         }
 
-        [HttpPost("CreateBook")]
-        public async Task<ActionResult<Book>> PostBook([FromBody] Book book)
+        // GET: Books/Create
+        public IActionResult Create()
         {
-            _context.Books.Add(book);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetBook), new { id = book.Id }, book);
+            return View();
         }
 
-        [HttpPut("UpdateBook/{id}")]
-        public async Task<IActionResult> PutBook(int id, Book book)
+        // POST: Books/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind("Titulo,Autor,Genero,Year")] Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(book);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(book);
+        }
+
+        // GET: Books/Edit/5
+        public IActionResult Edit(int id)
+        {
+            var book = _context.Books.Find(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            return View(book);
+        }
+
+        // POST: Books/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, [Bind("Id,Titulo,Autor,Genero,Year")] Book book)
         {
             if (id != book.Id)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            _context.Entry(book).State = EntityState.Modified;
-
-            try
+            if (ModelState.IsValid)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BookExists(id))
+                try
                 {
-                    return NotFound();
+                    _context.Update(book);
+                    _context.SaveChanges();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!_context.Books.Any(e => e.Id == book.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
+                return RedirectToAction(nameof(Index));
             }
-
-            return NoContent();
+            return View(book);
         }
 
-        private bool BookExists(int id)
+        // GET: Books/Delete/5
+        public IActionResult Delete(int id)
         {
-            return _context.Books.Any(e => e.Id == id);
+            var book = _context.Books.FirstOrDefault(b => b.Id == id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            return View(book);
+        }
+
+        // POST: Books/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var book = _context.Books.Find(id);
+            _context.Books.Remove(book);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
