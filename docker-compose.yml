@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: meuProjeto_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root       # Senha do usuário root do MySQL
+      MYSQL_DATABASE: sistema_livros  # Nome do banco de dados a ser criado
+      MYSQL_USER: appuser              # Usuário da aplicação
+      MYSQL_PASSWORD: senha_forte      # Senha do usuário da aplicação
+    ports:
+      - "3306:3306"                     # Mapeia a porta 3306 do host para o container
+    volumes:
+      - db_data:/var/lib/mysql          # Volume para persistência de dados
+
+volumes:
+  db_data:
