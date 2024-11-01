@@ -1,0 +1,139 @@
+/* Configurações Básicas */
+html {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin-bottom: 60px; /* Espaço para o footer */
+  background-color: #f8f9fa; /* Fundo claro para melhor contraste */
+  color: #212529; /* Texto padrão */
+}
+
+/* Links */
+a {
+  color: #0077cc;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #005fa3;
+  text-decoration: none;
+}
+
+/* Botões */
+.btn {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.btn-primary:hover {
+  background-color: #155a9a;
+  border-color: #145388;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #5a6268;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+  border-color: #4e555b;
+}
+
+/* Navegação */
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+.nav-link.active {
+  color: #fff !important;
+  background-color: #1b6ec2 !important;
+  border-radius: 0.25rem;
+}
+
+.navbar-nav .nav-link {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #1b6ec2;
+  background-color: #e9ecef;
+}
+
+/* Tabelas */
+.table {
+  background-color: #fff;
+}
+
+.table thead th {
+  background-color: #1b6ec2;
+  color: #fff;
+  border-bottom: 2px solid #1a5bb8;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* Rodapé */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Altura do footer */
+  line-height: 60px; /* Alinhamento vertical */
+  background-color: #f8f9fa;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Formulários */
+.form-control:focus {
+  border-color: #1b6ec2;
+  box-shadow: 0 0 0 0.1rem rgba(27, 110, 194, 0.25);
+}
+
+/* Caixa de Sombra */
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+/* Outros Elementos */
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+/* Tabelas Responsivas */
+.table-responsive {
+  overflow-x: auto;
+}
+
+@media (max-width: 576px) {
+  .table-responsive {
+    font-size: 0.9rem;
+  }
+}
